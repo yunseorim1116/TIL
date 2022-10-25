@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const record = [
+      "Enter uid1234 Muzi",
+      "Enter uid4567 Prodo",
+      "Leave uid1234",
+      "Enter uid1234 Prodo",
+      "Change uid4567 Ryan",
+    ];
+
+    function solution(record) {
+      let userInfoArr = [];
+      let answer = [];
+
+      record.forEach((el) => {
+        let stringToArray = el.split(" ");
+        let userInfoObj = {};
+
+        userInfoObj.status = stringToArray[0];
+        userInfoObj.userId = stringToArray[1];
+
+        if (stringToArray[0] === "Change") {
+          userInfoArr.forEach((user) => {
+            if (stringToArray[1] === user.userId) {
+              user.userName = stringToArray[2];
+            }
+          });
+          return;
+        }
+
+        if (stringToArray[0] === "Enter") {
+          userInfoArr.forEach((user) => {
+            if (stringToArray[1] !== user.userId) return;
+
+            if (stringToArray[2] !== user.userName) {
+              user.userName = stringToArray[2];
+            }
+          });
+        }
+
+        if (!stringToArray[2]) {
+          userInfoArr.forEach((user) => {
+            if (stringToArray[1] === user.userId)
+              stringToArray[2] = user.userName;
+          });
+        }
+
+        userInfoObj.userName = stringToArray[2];
+        userInfoArr.push(userInfoObj);
+      });
+
+      userInfoArr.forEach((el) => {
+        if (el.status === "Enter") {
+          let text = "";
+          text = el.userName + "님이 들어왔습니다.";
+          answer.push(text);
+          return;
+        }
+        let text = "";
+        text = el.userName + "님이 나갔습니다.";
+        answer.push(text);
+      });
+
+      return answer;
+    }
+    console.log(solution(record));
+  </script>
+</html>
