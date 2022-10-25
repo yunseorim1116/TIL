@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const record = [
+      "Enter uid1234 Muzi",
+      "Enter uid4567 Prodo",
+      "Leave uid1234",
+      "Enter uid1234 Prodo",
+      "Change uid4567 Ryan",
+    ];
+
+    function solution(record) {
+      let userInfoObj = {};
+      let msg = "";
+
+      record.forEach((el, idx) => {
+        let stringToArray = el.split(" ");
+        let id = stringToArray[1];
+        let name = stringToArray[2];
+
+        if (!name) return;
+        userInfoObj[id] = name;
+      });
+
+      let answer = [];
+
+      for (let i = 0; i < record.length; i++) {
+        let action = record[i].split(" ")[0];
+        if (action === "Enter") {
+          answer.push(
+            `${userInfoObj[record[i].split(" ")[1]]}님이 들어왔습니다.`
+          );
+        }
+        if (action === "Leave") {
+          answer.push(
+            `${userInfoObj[record[i].split(" ")[1]]}님이 나갔습니다.`
+          );
+        }
+      }
+
+      return answer;
+    }
+    console.log(solution(record));
+  </script>
+</html>
