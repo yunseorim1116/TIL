@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    console.log("2");
+
+    // let LinkedList = (function () {
+    //   function LinkedList() {
+    //     this.length = 0;
+    //     this.head = null;
+    //   }
+
+    //   function Node(data) {
+    //     this.data = data;
+    //     this.next = null;
+    //   }
+
+    //   LinkedList.prototype.add = function (value) {
+    //     let node = new Node(value);
+    //     let current = this.head;
+    //     if (!current) {
+    //       //현재 아무 노드도 없으면
+    //       this.head; //head에 새 노드를 추가합니다.
+    //       this.length++;
+    //       return node;
+    //     } else {
+    //       while (current.next) {
+    //         // 마지막 노드를 찾고.
+    //         current = current.next;
+    //       }
+    //       current.next = node; // 마지막 위치에 노드를 추가합니다.
+    //       this.length++;
+    //       return node;
+    //     }
+    //   };
+
+    //   return LinkedList;
+    // })();
+
+    // console.log(LinkedList);
+
+    class Node {
+      constructor(data) {
+        this.data = data;
+        this.next = null;
+      }
+    }
+
+    class LinkedList {
+      constructor() {
+        let init = new Node("init");
+        console.log(init);
+        this.head = init;
+        this.tail = init;
+
+        this.현재노드 = undefined;
+        this.데이터수 = 0;
+      }
+
+      length() {
+        return this.데이터수;
+      }
+
+      append(data) {
+        let 새로운노드 = new Node(data);
+        this.tail.next = 새로운노드;
+        this.tail = 새로운노드;
+        this.데이터수 += 1;
+      }
+    }
+
+    test = new LinkedList();
+    console.log(test);
+  </script>
+</html>
