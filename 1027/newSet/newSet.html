@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    https://velog.io/@nittre/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Array-VS-Set
+    Set과 Array를 구별하는 Set의 가장 큰 특징은 중복된 값을 허용하지 않는다는
+    것이다.
+  </body>
+  <script>
+    console.log("test");
+
+    let testSet = new Set();
+    console.log(testSet);
+    testSet.add(1);
+    testSet.add(2);
+    testSet.add(1); //중복된 값을 알아서 제거됨 !
+    console.log(testSet); // 결과값 1,2
+
+    const o = { a: 1, b: 2 };
+    testSet.add(o);
+    testSet.add({ a: 1, b: 2 }); // o 객체와 다른 객체로 취급되어 정상적으로 추가된다.
+
+    console.log(testSet);
+
+    console.log("-----------");
+
+    const mySet = new Set(1, "hi", { a: 1, b: 2 }, { a: 1, b: 2 });
+    var myArr = Array.from(mySet);
+    console.log(myArr);
+  </script>
+</html>
