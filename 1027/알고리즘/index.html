@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //1. O(1) Constant Time
+    //입력 공간에 대해 변하지 않습니다. 상수 시간입니다.n의 값이 얼마나 크든 상관이 없습니다.
+    const arr = [0, 1, 2, 3, 4];
+    function exampleConstant() {
+      console.log(arr[0]);
+    }
+
+    //2. O(n) Linear Time
+    //선형시간 :: 예를 들면, 입력된 숫자열의 총합을 계산하는 순서는 숫자열의 길이에 비례하는 시간이 필요하다.
+    //선형시간입니다. 최악의 경우에 n번의 연산을 수행해야 하는 알고리즘에 적용됩니다.
+    function exampleLinear(arr) {
+      for (let i = 0; i < arr.length; i++) {
+        console.log("i");
+      }
+    }
+
+    //3. O(n제곱) = Quadratic Time
+    //n2는 2차 시간 , n3은 3차 시간이겠죠
+
+    function exampleQuadratic() {
+      for (let i = 0; i < n; i++) {
+        console.log(i);
+        for (let j = i; j < n; j++) {
+          console.log(j);
+        }
+      }
+    }
+    function exampleCubic(n) {
+      for (let i = 0; i < n; i++) {
+        console.log(i);
+        for (let j = i; j < n; j++) {
+          console.log(j);
+          for (let k = j; k < n; k++) {
+            console.log(k);
+          }
+        }
+      }
+    }
+  </script>
+</html>
