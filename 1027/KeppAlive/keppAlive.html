@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+
+    Basic Usage#
+    In the Component Basics chapter, we introduced the syntax for Dynamic Components, using the <component> special element:
+
+      <KeepAlive>
+        <component :is="activeComponent" />
+      </KeepAlive>
+
+    Now, the state will be persisted across component switches:
+
+    </body>
+    <script>
+
+export default {
+  activated() {
+    // called on initial mount
+    // and every time it is re-inserted from the cache
+    // 캐시에서 다시 삽입될 때마다 초기 마운트 시 호출됩니다.
+  },
+  deactivated() {
+    // called when removed from the DOM into the cache
+    // and also when unmounted
+    // DOM에서 캐시로 제거될 때와 언마운트될 때 호출됨
+  }
+}
+
+    </script>
+</html>
