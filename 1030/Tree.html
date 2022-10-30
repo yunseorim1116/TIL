@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function Node(val) {
+      this.val = val;
+      this.left = null;
+      this.right = null;
+    }
+
+    let root = new Node(5);
+    console.log(root);
+    let left = new Node(3);
+    console.log(left);
+    let right = new Node(8);
+    console.log(right);
+
+    root.left = left;
+    root.right = right;
+  </script>
+</html>
