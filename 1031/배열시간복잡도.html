@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <br>
+    반복문이 몇번이건 그냥 최악의 케이스만 계산하는고야 포이치가 두개잇어도
+    이중포이치가 아니라면 그건 그냥 on인거야 이중포이치라면 on제곱인거고 앞에
+    상수는 제거하는게 규칙이얌
+
+</br>
+    오브젝트 : 순서없이 키벨류
+    배열 : 순서있움
+    맵 :순서도 있고 키벨류도 있음
+
+    이래서 생성할때 배열은 순서만 신경쓰면 되지만,
+    맵의 경우 순서에 키벨류까지 매핑하는 작업이 잇어서 더 오래걸릴수도…
+</br>
+  </body>
+  <script>
+
+    console.time();
+    const map = new Map();
+    for (let i = 0; i < 10000000; i++) {
+      map.set(i, i);
+    }
+
+    map.delete(50000);
+    map.set(50000, "hello");
+    map.set(50001, "world");
+    console.timeEnd();
+
+
+
+    console.time();
+    const arr = [];
+    for (let i = 0; i < 10000000; i++) {
+      arr.push(i);
+    }
+    arr.splice(50000, 1);
+    arr.splice(50000, 0, "hello");
+    arr[50001] = "world";
+    console.timeEnd();
+
+
+
+    console.time();
+    const arr2 = [];
+    for (let i = 0; i < 10000000; i++) {
+      arr2.push(i);
+    }
+    arr2.splice(50000, 1);
+    arr2.splice(50000, 0, "hello");
+    arr2[50001] = "world";
+    console.timeEnd();
+
+  </script>
+</html>
