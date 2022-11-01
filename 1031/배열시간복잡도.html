@@ -27,35 +27,40 @@
     for (let i = 0; i < 10000000; i++) {
       map.set(i, i);
     }
-
-    map.delete(50000);
-    map.set(50000, "hello");
-    map.set(50001, "world");
     console.timeEnd();
 
-
-
     console.time();
+
+
     const arr = [];
     for (let i = 0; i < 10000000; i++) {
       arr.push(i);
     }
-    arr.splice(50000, 1);
-    arr.splice(50000, 0, "hello");
-    arr[50001] = "world";
     console.timeEnd();
 
-
-
-    console.time();
+    console.time()
     const arr2 = [];
     for (let i = 0; i < 10000000; i++) {
-      arr2.push(i);
+      arr[i] = i;
     }
-    arr2.splice(50000, 1);
-    arr2.splice(50000, 0, "hello");
-    arr2[50001] = "world";
     console.timeEnd();
+
+    // arr.splice(50000, 1);
+    // arr.splice(50000, 0, "hello");
+    // arr[50001] = "world";
+    // console.timeEnd();
+
+
+
+    // console.time();
+    // const arr2 = [];
+    // for (let i = 0; i < 10000000; i++) {
+    //   arr2.push(i);
+    // }
+    // arr2.splice(50000, 1);
+    // arr2.splice(50000, 0, "hello");
+    // arr2[50001] = "world";
+    // console.timeEnd();
 
   </script>
 </html>
