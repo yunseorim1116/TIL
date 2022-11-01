@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const map = {};
+
+    // key-value pair 넣기
+    map["key1"] = "value1";
+    map["key2"] = "value2";
+    map["key3"] = "value3";
+
+    // 특정 key를 가지고 있는지 확인하기
+    if (map.hasOwnProperty("key1")) {
+      console.log("Map contains key1");
+    }
+
+    // 특정 key의 value를 찾기
+    console.log(map["key1"]);
+  </script>
+</html>
