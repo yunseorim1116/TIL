@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <br>
+
+
+</br>
+
+</br>
+  </body>
+  <script>
+
+const map = new Map();
+const arr = new Array(100000).fill(0);
+for (let i = 0; i < 1000000; i++) {
+  map.set(i, i);
+}
+
+//데이터 생성 후
+
+function test1() {
+  for (let i = 0; i < 1000000; i++) {
+    map.delete(i);
+  }
+}
+
+function test2() {
+  for (let i = 0; i < 1000000; i++) {
+    arr.splice(i, 1);
+  }
+}
+
+console.time('map delete');
+test1();
+console.timeEnd('map delete');
+
+console.time('arr delete');
+test2();
+console.timeEnd('arr delete');
+
+  </script>
+</html>

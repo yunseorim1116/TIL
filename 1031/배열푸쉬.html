@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const arr = [];
+    console.time("Array Performance Test");
+
+    for (let i = 0; i < 10000000; i++) {
+      arr[i] = i;
+    }
+    console.timeEnd("Array Performance Test"); //Array Performance Test: 66.785888671875 ms
+
+    const arr2 = [];
+    console.time("Array Performance Test2");
+
+    for (let i = 0; i < 10000000; i++) {
+      arr.push(i);
+    }
+    console.timeEnd("Array Performance Test2"); //Array Performance Test2: 41.598876953125 ms
+  </script>
+</html>
