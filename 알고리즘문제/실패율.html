@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    console.log("실패율");
+
+    const N = 5;
+    const stages = [2, 1, 2, 6, 2, 4, 3, 3];
+
+    function solution(N, stages) {
+      let mySet = new Set(stages);
+      const uniqueArr = [...mySet].sort();
+
+      let failRateArr = [];
+      let failRateObj = {};
+
+      const sortedStage = stages.sort();
+      console.log(sortedStage);
+      let stageLength = sortedStage.length;
+
+      let count = 1;
+      for (let i = 0; i < sortedStage.length; i++) {
+        if (sortedStage[i] == N + 1) {
+          return;
+        }
+        let failRate = 0;
+        let stageNumber = sortedStage[i];
+        failRateObj[stageNumber] = { failPeople: count };
+
+        count += 1;
+        failRateObj[stageNumber].participant = stageLength;
+
+        if (sortedStage[i] !== sortedStage[i + 1]) {
+          console.log("if>> ");
+          stageLength =
+            stageLength - Number(failRateObj[stageNumber].failPeople);
+
+          count = 1;
+        }
+
+        console.log("--");
+        console.log(failRateObj);
+      }
+    }
+
+    console.log(solution(N, stages));
+  </script>
+</html>
