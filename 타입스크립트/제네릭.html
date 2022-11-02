@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    제네릭이란?<br />
+    재사용성 높은 컴포넌트를 만들 때 사용되며, 한가지 타입보다 여러 타입에서
+    동작하는 컴포넌트를 생성하는데 사용합니다.
+  </body>
+  <script>
+        // 1. 어떤 타입을 받을 건지 먼저 정의 (logText<T>)
+        // 2. params 타입으로 정의 (text: T)
+        function logText<T>(text: T): T {
+          console.log(text);
+        }
+
+        const str = logText < string > "a";
+        str.split("");
+
+        logText < boolean > true; // type: boolean
+        logText < string > "hi";
+        logText < number > 10;
+
+        //위 함수를 확장하여 만약 console.log(text.length)를 받는 다면 어떻게 할 수 있을까?
+
+       function logText<number>(text: number): number {
+        console.log(text.length); // Property 'length' does not exist on type 'T'.ts(2339)
+       return text;
+      }
+      logText<string>("dd");
+
+     // 타입 가드를 이용해 특정 타입만 핸들링 할 수 있습니다.
+    function logText<T>(text: T): T {
+     if (typeof text === "string") {
+     console.log(text.length);
+     }
+    return text;
+    }
+  </script>
+</html>
