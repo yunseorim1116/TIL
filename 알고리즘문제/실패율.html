@@ -38,6 +38,7 @@
       } //포문
       // console.log(failRateArr);
       failRateArr.sort((a, b) => b[1] - a[1]);
+      console.log(failRateArr.map((stage) => stage[0]));
       return failRateArr.map((stage) => stage[0]);
     }
 
