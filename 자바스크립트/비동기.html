@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //https://overcome-the-limits.tistory.com/147
+    //https://velog.io/@hanameee/%EB%B0%B0%EC%97%B4%EC%97%90-%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%9E%91%EC%97%85%EC%9D%84-%EC%8B%A4%EC%8B%9C%ED%95%A0-%EB%95%8C-%EC%95%8C%EC%95%84%EB%91%90%EB%A9%B4-%EC%A2%8B%EC%9D%84%EB%B2%95%ED%95%9C-%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%93%A4
+    function test() {
+      const promiseFunction = () =>
+        new Promise((resolve) => setTimeout(() => resolve("result"), 1000));
+
+      Array(10)
+        .fill(0)
+        .forEach(async () => {
+          const result = await promiseFunction();
+          console.log(result);
+        });
+    }
+
+    test();
+
+    // for 문으로 변경하는 방법
+    // (1) test 앞에 async 키워드를 붙인다
+    async function test() {
+      const promiseFunction = () =>
+        new Promise((resolve) => setTimeout(() => resolve("result"), 1000));
+
+      let arr = Array(10).fill(0);
+      // (2) forEach 대신 for 을 사용한다
+      for (let i = 0; i < arr.length; i++) {
+        const result = await promiseFunction();
+        console.log(result);
+      }
+    }
+
+    //for...of로 변경하는 방법
+    function test() {
+      const promiseFunction = () =>
+        new Promise((resolve) => setTimeout(() => resolve("result"), 1000));
+
+      let array = Array(10).fill(0);
+      // (1) test를 async로 감싸는 대신, for문을 async 즉시실행함수로 감싸도 된다
+      (async () => {
+        // (2) forEach 대신 for ... of를 사용한다
+        for (let element of array) {
+          const result = await promiseFunction();
+          console.log(result);
+        }
+      })();
+    }
+
+    test();
+
+    // forEach 동작 원리 이해하기
+    // forEach가 순차처리가 안 되는 이유에 대해서 알려면, 먼저 forEach의 동작 원리를 이해해야 합니다. 링크에서 재구현한 forEach 코드는 아래와 같습니다.
+
+    //forEach는 배열 요소를 돌면서 callback을 실행할 뿐,
+    // 한 callback이 끝날 때까지 기다렸다가 다음 callback을 실행하는 것이 아닙니다.
+  </script>
+</html>
