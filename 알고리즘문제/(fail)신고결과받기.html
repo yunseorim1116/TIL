@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const id_list = ["muzi", "frodo", "apeach", "neo"];
+    const report = [
+      "muzi frodo",
+      "apeach frodo",
+      "frodo neo",
+      "muzi neo",
+      "apeach muzi",
+    ];
+    const k = 2;
+    let reportResult = {};
+    let answer = [];
+    let reportedUser = [];
+
+    function solution(id_list, report, k) {
+      console.log(id_list);
+      id_list.forEach((user) => {
+        //포이치 시작
+        let userData = {};
+
+        userData = {
+          userReport: [],
+        };
+
+        for (let i = 0; i < report.length; i++) {
+          const reportData = report[i].split(" ");
+
+          if (user === reportData[0]) {
+            userData.userReport.push(reportData[1]);
+            const reportedUserArr = userData.userReport;
+            const reportedUserResult = [...new Set(reportedUserArr)];
+            userData.userReport = reportedUserResult;
+          }
+        } //이중포문
+        reportResult[user] = userData;
+      }); //포이치 끝
+
+      console.log(reportResult);
+
+      for (let [key, value] of Object.entries(reportResult)) {
+        console.log(value.userReport);
+        value.userReport.forEach((reportedUserName) => {
+          reportedUser.push(reportedUserName);
+        });
+      }
+      const reportedUserArr = reportedUser.sort();
+    }
+    console.log(solution(id_list, report, k));
+  </script>
+</html>
