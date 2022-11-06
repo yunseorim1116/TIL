@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function solution(id_list, report, k) {
+      const reportMap = new Map();
+      const reportedCntMap = new Map();
+      id_list.forEach((_) => {
+        reportMap.set(_, []);
+        reportedCntMap.set(_, 0);
+      });
+      new Set(report).forEach((_) => {
+        const temp = _.split(" ");
+        const from = temp[0];
+        const to = temp[1];
+        reportMap.get(from).push(to);
+        reportedCntMap.set(to, reportedCntMap.get(to) + 1);
+      });
+
+      return Array.from(reportMap).map((_) => {
+        const from = _[0];
+        const to_list = _[1];
+        let cnt = 0;
+        to_list.forEach((__) => {
+          if (reportedCntMap.get(__) >= k) cnt++;
+        });
+        return cnt;
+      });
+    }
+  </script>
+</html>
