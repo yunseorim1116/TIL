@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    //쟈비스 코드
+  </body>
+  <script>
+    const id_list = ["muzi", "frodo", "apeach", "neo"];
+    const report = [
+      "muzi frodo",
+      "apeach frodo",
+      "frodo neo",
+      "muzi neo",
+      "apeach muzi",
+    ];
+    const k = 2;
+    function solution(id_list, report, k) {
+      // Map 초기화
+      const reportMap = new Map();
+      const reportedCntMap = new Map();
+      id_list.forEach((_) => {
+        reportMap.set(_, []);
+        reportedCntMap.set(_, 0);
+      });
+
+      // report로부터 Map 세팅
+      new Set(report).forEach((_) => {
+        const temp = _.split(" ");
+        reportMap.get(temp[0]).push(temp[1]);
+        reportedCntMap.set(temp[1], reportedCntMap.get(temp[1]) + 1);
+      });
+
+      console.log(Array.from(reportMap.values()));
+      // console.log(Array.from(reportMap));
+
+      // 세팅된 Map에서 필요한 내용 추출
+      return Array.from(reportMap.values()).map(
+        (_) => _.filter((__) => reportedCntMap.get(__) >= k).length
+      );
+    }
+    console.log(solution(id_list, report, k));
+  </script>
+</html>
