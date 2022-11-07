@@ -8,7 +8,17 @@
   </head>
   <body></body>
   <script>
+    const id_list = ["muzi", "frodo", "apeach", "neo"];
+    const report = [
+      "muzi frodo",
+      "apeach frodo",
+      "frodo neo",
+      "muzi neo",
+      "apeach muzi",
+    ];
+    const k = 2;
     function solution(id_list, report, k) {
+      console.log("?");
       const reportMap = new Map();
       const reportedCntMap = new Map();
       id_list.forEach((_) => {
@@ -22,7 +32,8 @@
         reportMap.get(from).push(to);
         reportedCntMap.set(to, reportedCntMap.get(to) + 1);
       });
-
+      console.log(reportMap);
+      console.log(Array.from(reportMap));
       return Array.from(reportMap).map((_) => {
         const from = _[0];
         const to_list = _[1];
@@ -33,5 +44,7 @@
         return cnt;
       });
     }
+
+    console.log(solution(id_list, report, k));
   </script>
 </html>
