@@ -18,56 +18,35 @@
     ];
     const k = 2;
 
-    let reportedUser = [];
-    let answer = [];
-
     function solution(id_list, report, k) {
-      const reportArr = new Set(report);
-      const arr = Array.from(reportArr);
-
+      let answer = [];
       let reportResult = {};
+      let reportedUserCount = {};
 
       id_list.forEach((user) => {
-        let userReport = [];
-
-        for (let i = 0; i < arr.length; i++) {
-          const reportData = report[i].split(" ");
-          console.log(reportData);
-          userReport.push(reportData[1]);
-          reportResult[user] = userReport;
-
-          console.log(reportResult);
-        }
+        reportResult[user] = [];
+        reportedUserCount[user] = 0;
       }); //포이치 끝
-      console.log(reportResult);
 
-      const reportedUserArr = reportedUser.sort();
-      let reportedUserObj = {};
-      let count = 0;
-      for (let i = 0; i < reportedUserArr.length; i++) {
-        const reportedUserName = reportedUserArr[i];
-        if (reportedUserArr[i] === reportedUserArr[i - 1]) {
-          reportedUserObj[reportedUserArr[i]].count += 1;
-          if (reportedUserObj[reportedUserArr[i]].count === k) {
-            reportedUserObj[reportedUserArr[i]].reportedUser = true;
-            reportResult[reportedUserArr[i]].reportedUser = true;
+      new Set(report).forEach((x) => {
+        const temp = x.split(" ");
+
+        reportResult[temp[0]].push(temp[1]);
+        reportedUserCount[temp[1]] += 1;
+      });
+
+      for (let x in reportResult) {
+        const reportedArr = reportResult[x];
+
+        let count = 0;
+        reportedArr.forEach((_) => {
+          if (reportedUserCount[_] >= k) {
+            count++;
           }
-        } else {
-          reportedUserObj[reportedUserName] = { count: 1 };
-        }
+        });
+        answer.push(count);
       }
 
-      // id_list.forEach((user, idx) => {
-      //   let count = 0;
-
-      //   const userReportArr = reportResult[user].userReport;
-      //   userReportArr.forEach((reported) => {
-      //     if (reportResult[reported]?.reportedUser) {
-      //       count++;
-      //     }
-      //   });
-      //   answer[idx] = count;
-      // });
       return answer;
     }
     console.log(solution(id_list, report, k));
