@@ -17,28 +17,29 @@
       "apeach muzi",
     ];
     const k = 2;
-    let reportResult = {};
+
     let reportedUser = [];
     let answer = [];
 
     function solution(id_list, report, k) {
+      const reportArr = new Set(report);
+      const arr = Array.from(reportArr);
+
+      let reportResult = {};
+
       id_list.forEach((user) => {
-        let userData = { userReport: [] };
+        let userReport = [];
 
-        for (let i = 0; i < report.length; i++) {
+        for (let i = 0; i < arr.length; i++) {
           const reportData = report[i].split(" ");
+          console.log(reportData);
+          userReport.push(reportData[1]);
+          reportResult[user] = userReport;
 
-          if (user === reportData[0]) {
-            userData.userReport.push(reportData[1]);
-          }
+          console.log(reportResult);
         }
-        const reportedUserResult = [...new Set(userData.userReport)];
-        userData.userReport = reportedUserResult;
-        reportResult[user] = userData;
-        reportedUser.push(...reportedUserResult);
-        if (!reportedUserResult.length) userData.userReport[0] = "none";
-        // console.log(reportResult);
       }); //포이치 끝
+      console.log(reportResult);
 
       const reportedUserArr = reportedUser.sort();
       let reportedUserObj = {};
@@ -56,17 +57,17 @@
         }
       }
 
-      id_list.forEach((user, idx) => {
-        let count = 0;
+      // id_list.forEach((user, idx) => {
+      //   let count = 0;
 
-        const userReportArr = reportResult[user].userReport;
-        userReportArr.forEach((reported) => {
-          if (reportResult[reported]?.reportedUser) {
-            count++;
-          }
-        });
-        answer[idx] = count;
-      });
+      //   const userReportArr = reportResult[user].userReport;
+      //   userReportArr.forEach((reported) => {
+      //     if (reportResult[reported]?.reportedUser) {
+      //       count++;
+      //     }
+      //   });
+      //   answer[idx] = count;
+      // });
       return answer;
     }
     console.log(solution(id_list, report, k));

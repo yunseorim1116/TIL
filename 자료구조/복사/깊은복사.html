@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let a = "a";
+    let b = "b";
+    // console.log(a);
+    a = b;
+    // console.log(a);
+    // console.log(b);
+
+    const obj1 = { a: 1, b: 2 };
+    const obj2 = Object.assign({}, obj1);
+    obj2.a = 100;
+    // console.log(obj1 === obj2); // false
+    // console.log(obj2.a);
+    // console.log(obj1.a); // 1
+
+    const person1 = { name: "inyong" };
+    const person2 = person1;
+    person2.name = "jung";
+    // console.log("?");
+    // console.log(person1);
+
+    // result
+
+    person2.name; // 'jung'
+
+    person1 === person2; // true - 같은 데이터 주소를 바라보고 있는 두 변수
+
+    let num = 123;
+  </script>
+</html>
