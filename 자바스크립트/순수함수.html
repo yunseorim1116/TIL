@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //순수함수와 순수함수가 아닌것
+
+    function add(a, b) {
+      return a + b;
+    }
+
+    console.log(add(10, 5));
+
+    //add 는 순수함수다. 언제,어디서 실행해도 항상 제 값을 리턴하고 외부 상태를 변경하지 않았기 때문이다.
+
+    let c = 1;
+    function add2(a, b) {
+      return a + b + c;
+    }
+
+    //add2 는 순수 함수가 아니다.
+    //c라는 변수 값이 변하면 결과값도 달라지기 때문이다. 다만 C가 상수면 add2는 순수함수이다.
+    //외부의 값을 참조해도 결과값이 동일한 인자에 대해서 같기 때문이다.
+
+    let c = 20;
+    function add3(a, b) {
+      c = b; // 외부상태에 영향을 미치네? = 부수효과
+      return a + b;
+    }
+    //     add3는 순수 함수가 아니다. 함수가 외부의 값을 변경하는 코드를 가지고 있기 때문.
+    // 리턴하는 값이 항상 일정하더라도 외부의 상태를 변경하는 코드가 있으면 순수 함수가 아니다.
+  </script>
+</html>
