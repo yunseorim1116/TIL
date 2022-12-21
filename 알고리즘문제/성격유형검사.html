@@ -20,10 +20,15 @@
         ["A", "N"],
       ];
       var answer = "";
+      const mbitObj = {};
 
-      survey.forEach((ele) => {
+      survey.forEach((ele, idx) => {
         const arr = ele.split("");
 
+        if (choices[idx] >= 1 && choices[idx] <= 3) {
+          mbitObj[arr[0]];
+        } else {
+        }
         console.log(arr);
       });
       return answer;
