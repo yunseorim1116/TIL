@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const s = "banana";
+
+    function solution(s) {
+      var answer = [];
+
+      for (let i = 0; i < s.length; i++) {
+        const word = s[i];
+        let count = 0;
+        let swich = false;
+
+        for (let j = i; j >= 0; j--) {
+          if (!swich) {
+            count++;
+            if (s[j - 1] == word) {
+              swich = true;
+            }
+          }
+        }
+
+        if (swich) count = count;
+        else count = -1;
+        answer.push(count);
+        count = 0;
+      }
+
+      return answer;
+    }
+    console.log(solution(s));
+  </script>
+</html>
