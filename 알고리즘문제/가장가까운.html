@@ -18,10 +18,11 @@
         let count = 0;
         let flag = false;
 
-        for (let j = i; j >= 0; j--) {
-          if (!flag) {
-            count++;
-            if (s[j - 1] == word) flag = true;
+        for (let j = i - 1; j >= 0; j--) {
+          count++;
+          if (s[j] == word) {
+            flag = true;
+            break;
           }
         }
 

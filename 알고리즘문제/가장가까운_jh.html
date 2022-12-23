@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const s = "banana";
+        function solution(s) {
+          var answer = [];
+          for (let i = 0; i <script s.length; i++) {
+            let flag = false;
+            for (let j = i - 1; j >= 0; j--) {
+              if (s[i] == s[j]) {
+                flag = true;
+                answer.push(i - j);
+                break;
+              }
+            }
+            if (!flag) answer.push(-1);
+          }
+          return answer;
+        }
+  </script>
+</html>
