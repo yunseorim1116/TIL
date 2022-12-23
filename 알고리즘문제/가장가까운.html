@@ -16,19 +16,16 @@
       for (let i = 0; i < s.length; i++) {
         const word = s[i];
         let count = 0;
-        let swich = false;
+        let flag = false;
 
         for (let j = i; j >= 0; j--) {
-          if (!swich) {
+          if (!flag) {
             count++;
-            if (s[j - 1] == word) {
-              swich = true;
-            }
+            if (s[j - 1] == word) flag = true;
           }
         }
 
-        if (swich) count = count;
-        else count = -1;
+        if (!flag) count = -1;
         answer.push(count);
         count = 0;
       }
