@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const food = [1, 7, 1, 2];
+    function solution(food) {
+      const arr = food.map((el, idx) => {
+        if (el % 2 === 1) return (el - 1) / 2;
+        if (el !== 1) return el / 2;
+      });
+
+      let result = "";
+      console.log(arr);
+      arr.forEach((number, idx) => {
+        if (idx === 0) return;
+        if (number === 0) return;
+        let x = "";
+        for (let i = 0; i < number; i++) x += idx;
+        result += x;
+      });
+
+      return result + "0" + result.split("").reverse().join("");
+    }
+    console.log(solution(food));
+  </script>
+</html>

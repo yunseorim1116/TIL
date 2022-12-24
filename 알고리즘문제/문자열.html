@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const X = "100";
+    const Y = "123450";
+
+    function solution(X, Y) {
+      const x = Array.from(X).sort();
+      const y = Array.from(Y).sort();
+      let test = [];
+
+      for (let i = 0; i < x.length; i++) {
+        for (let j = 0; j < y.length; j++) {
+          if (x[i] === y[j]) {
+            test.push(x[i]);
+            y.splice(j, 1);
+            j--;
+          }
+        }
+      }
+
+      const arr = test.sort((a, b) => b - a).join("");
+
+      return arr[0] == 0 ? "0" : arr || "-1";
+    }
+    console.log(solution(X, Y));
+  </script>
+</html>
