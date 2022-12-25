@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const ingredient = [2, 1, 1, 2, 3, 1, 2, 3, 1];
+    function solution(ingredient) {
+      const food = "1231";
+      var answer = 0;
+      let str = ingredient.join("");
+      const checkIndex = () => {
+        let firstIndex = str.indexOf(food);
+        let lastIndex = firstIndex + food.length - 1;
+
+        if (firstIndex == -1) return answer;
+        answer++;
+        const a = str.substr(0, firstIndex);
+        const b = str.substr(lastIndex, str.length);
+        str = a + b;
+        return checkIndex();
+      };
+
+      return checkIndex();
+    }
+    console.log(solution(ingredient));
+  </script>
+</html>
