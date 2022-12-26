@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function solution(new_id) {
+      var answer = "";
+      const newId = new_id.toLowerCase();
+      const x = "~!@#$%^&*()=+[{]}:?,<>/";
+      const _ = [...x];
+      const idArr = [];
+
+      [...newId].forEach((id, idx) => {
+        idArr.push(id);
+        _.forEach((v) => {
+          if (id === v) idArr.pop();
+        });
+        if (idArr[0] === ".") idArr.shift();
+        const lastIdx = idArr.length - 1;
+        if (idArr[lastIdx] === "." && idArr[lastIdx - 1] === ".") idArr.pop();
+      });
+
+      answer = idArr.join("");
+
+      if (answer.length >= 16) {
+        console.log("15");
+        answer = idArr.splice(0, 15).join("");
+      }
+
+      if (answer.charAt(answer.length - 1) === ".") {
+        answer = answer.slice(0, -1);
+      }
+
+      if (answer.length <= 2) {
+        const world = answer.charAt(answer.length - 1);
+        while (answer.length < 3) {
+          world ? (answer += world) : (answer += "a");
+        }
+      }
+
+      return answer;
+    }
+  </script>
+</html>
