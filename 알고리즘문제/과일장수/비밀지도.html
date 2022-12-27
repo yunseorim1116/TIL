@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function solution(n, arr1, arr2) {
+      var answer = [];
+      const test = [];
+      arr1.forEach((number, idx) => {
+        const x = number.toString(2);
+        const s = arr2[idx].toString(2);
+        const v = x.padStart(n, "0");
+        const t = s.padStart(n, "0");
+        test.push([v, t]);
+      });
+
+      console.log(test);
+
+      test.forEach((el) => {
+        let pic = "";
+        for (let i = 0; i < n; i++) {
+          if (el[0][i] === "1" || el[1][i] === "1") {
+            pic += "#";
+          } else pic += " ";
+        }
+        answer.push(pic);
+      });
+      console.log(answer);
+
+      return answer;
+    }
+  </script>
+</html>
