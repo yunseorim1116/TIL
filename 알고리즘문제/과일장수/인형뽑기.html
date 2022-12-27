@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function solution(board, moves) {
+      var answer = 0;
+      const resultArr = [];
+      const x = [];
+      for (let i = 0; i < moves.length; i++) {
+        const number = moves[i] - 1;
+        for (let j = 0; j < board.length; j++) {
+          if (board[j][number] !== 0) {
+            x.push(board[j][number]);
+            if (resultArr[resultArr.length - 1] == board[j][number]) {
+              resultArr.pop();
+            } else {
+              resultArr.push(board[j][number]);
+            }
+            board[j][number] = 0;
+            break;
+          }
+        }
+      }
+      console.log(resultArr);
+      return x.length - resultArr.length;
+    }
+  </script>
+</html>
