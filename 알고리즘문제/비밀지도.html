@@ -11,6 +11,7 @@
     function solution(n, arr1, arr2) {
       var answer = [];
       const test = [];
+
       arr1.forEach((number, idx) => {
         const x = number.toString(2);
         const s = arr2[idx].toString(2);
@@ -19,18 +20,14 @@
         test.push([v, t]);
       });
 
-      console.log(test);
-
       test.forEach((el) => {
         let pic = "";
         for (let i = 0; i < n; i++) {
-          if (el[0][i] === "1" || el[1][i] === "1") {
-            pic += "#";
-          } else pic += " ";
+          if (el[0][i] === "1" || el[1][i] === "1") pic += "#";
+          else pic += " ";
         }
         answer.push(pic);
       });
-      console.log(answer);
 
       return answer;
     }

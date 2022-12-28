@@ -19,9 +19,8 @@
             x.push(board[j][number]);
             if (resultArr[resultArr.length - 1] == board[j][number]) {
               resultArr.pop();
-            } else {
-              resultArr.push(board[j][number]);
-            }
+            } else resultArr.push(board[j][number]);
+
             board[j][number] = 0;
             break;
           }
