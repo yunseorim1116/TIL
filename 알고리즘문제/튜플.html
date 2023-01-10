@@ -12,7 +12,6 @@
       var answer = [];
       let world = s.slice(1);
       world = world.slice(0, -1);
-      let count = 0;
       let worlds = "";
       let obj = {};
 
@@ -34,9 +33,7 @@
 
       const v = [];
       for (let key in obj) v.push([key, obj[key].length]);
-
       v.sort((a, b) => b[1] - a[1]);
-
       return v.map((num) => {
         return Number(num[0]);
       });

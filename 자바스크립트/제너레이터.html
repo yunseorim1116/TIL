@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+제너레이터
+https://han7096.medium.com/es6-%EA%B3%B5%EB%B6%80%EB%85%B8%ED%8A%B8-%EC%A0%9C%EB%84%88%EB%A0%88%EC%9D%B4%ED%84%B0-generator-e3afec0c09f6
+<script>
+  // 제너레이터는 이터레이터 객체를 반환하는 함수이다. (이터레이터:반복을 위해
+  //설계된 특정 인터페이스가 있는 객체)
+  function* createIterator() {
+    yield 1;
+    yield 2;
+    yield 3;
+  }
+
+  let iterator = createIterator();
+  console.log(iterator);
+  console.log(iterator.next().value); // 1
+  console.log(iterator.next().value); // 2
+  console.log(iterator.next().value); // 3
+  //function 다음에 붙은 별표(=애스터리스크, * )는 이 함수가 제너레이터 함수라는 의미이다.
+
+  //제너레이터가 일반 함수와 다른점 : 함수 실행 제어 가능
+  //제너레이터는 함수의 실행을 중간에 멈추었다가 필요한 시점에 다시 재개할 수 있다.
+
+  let iterator2 = createIterator();
+  for (const a of iterator2) {
+    console.log(a);
+  }
+  //위의 예시에서 createIterator 제너레이터는 이터레이터를 반환하므로 for...of 루프에서 쓸 수 있다.
+</script>
