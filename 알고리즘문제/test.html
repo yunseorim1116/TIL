@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    console.log("?");
+
+    const n = 9;
+    const k = 9;
+
+    function solution(n, k) {
+      let num = n;
+      let cnt = 1;
+      const x = n.toString();
+
+      while (num % k === 0) {
+        if (num % k === 0) {
+          break;
+        }
+        num += x;
+        cnt++;
+      }
+
+      return cnt;
+    }
+
+    console.log(solution(n, k));
+  </script>
+</html>
