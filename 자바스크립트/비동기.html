@@ -61,5 +61,20 @@
 
     //forEach는 배열 요소를 돌면서 callback을 실행할 뿐,
     // 한 callback이 끝날 때까지 기다렸다가 다음 callback을 실행하는 것이 아닙니다.
+    // (1) test 앞에 async 키워드를 붙인다
+
+    async function test() {
+      const promiseFunction = () =>
+        new Promise((resolve) => setTimeout(() => resolve("result"), 1000));
+
+      let arr = Array(10).fill(0);
+      // (2) forEach 대신 for 을 사용한다
+      for (let i = 0; i < arr.length; i++) {
+        const result = await promiseFunction();
+        console.log(result);
+      }
+    }
+
+    test();
   </script>
 </html>
