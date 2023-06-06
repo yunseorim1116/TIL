@@ -37,5 +37,4 @@ var sum = function(a,b){
 }
 
 
-
 console.log(sum(2,3))
