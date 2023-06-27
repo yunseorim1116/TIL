@@ -29,7 +29,6 @@ const b = () =>  {
     console.log('a')
 
 }
-
 b()
 
 }
@@ -41,17 +40,17 @@ const obj = {
 
 obj.regularFunction()
 
-// function regularFunction() {
-//   console.log(this); // this는 regularFunction의 this
-//   const arrowFunction = () => {
-//     console.log(this); // this는 regularFunction의 this와 동일
-//   };
-//   arrowFunction();
-// }
+function regularFunction() {
+  console.log(this); // this는 regularFunction의 this
+  const arrowFunction = () => {
+    console.log(this); // this는 regularFunction의 this와 동일
+  };
+  arrowFunction();
+}
 
-// const obj = {
-//   name: 'John',
-//   regularFunction: regularFunction
-// };
+const obj = {
+  name: 'John',
+  regularFunction: regularFunction
+};
 
-// obj.regularFunction();
+obj.regularFunction();
