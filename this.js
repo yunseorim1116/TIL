@@ -111,14 +111,14 @@ var man = {
     name: 'john',
     // 2. 객체의 메소드 안에서 함수를 선언하는 것이니까 내부 함수
     hello: function() {
-        function getName() {
-            // 3. 여기서 this가 무엇을 가리키고 있을까?
-            console.log(this.name)
-            return this.name;
+      console.log(this)
+       const getName = () => {
+          // console.log(this)
+          // console.log(this.name)
+         return this.name
         }
         // 4. 이번에는 call()을 통해 현재 문맥에서의 this(man 객체)를 바인딩해주었다
-        console.log(this)
-        console.log('hello ' + getName.call(this));
+getName()
     }
 }
 
@@ -131,20 +131,21 @@ man.hello();
 
 //bind Test
 
-let person1 = {
-    name: 'Jo'
-};
+// let person1 = {
+//     name: 'Jo'
+// };
 
-let person2 = {
-    name: 'Kim',
-    study: function() {
-        console.log(this.name + '이/가 공부를 하고 있습니다.');
-    }
-};
+// let person2 = {
+//     name: 'Kim',
+//     study: function() {
+//         console.log(this.name + '이/가 공부를 하고 있습니다.');
+//     }
+// };
 
-person2.study(); // Kim이/가 공부를 하고 있습니다.
+// person2.study(); // Kim이/가 공부를 하고 있습니다.
 
-// bind()
-let student = person2.study.bind(person1);
+// // bind()
+// let student = person2.study.bind(person1);
+// // console.log(student)
 
-student(); // Jo이/가 공부를 하고 있습니다.
+// student(); // Jo이/가 공부를 하고 있습니다.
