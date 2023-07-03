@@ -55,6 +55,16 @@
 // console.log("두번째 실행---------------");
 // func();
 
-const a = [1,2,3]
-a[0] = 3
-console.log(a)
+// const a = [1,2,3]
+// a[0] = 3
+// console.log(a)
+
+function a(x){
+
+    console.log(x)
+
+    var x =3;
+    console.log(x)
+}
+
+a(1)
