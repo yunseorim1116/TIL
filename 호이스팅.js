@@ -63,7 +63,7 @@ function a(x){
 
     console.log(x)
 
-    var x =3;
+    var x = 3;
     console.log(x)
 }
 
