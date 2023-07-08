@@ -10,11 +10,62 @@ const currying = function(a){
 // const result = currying(1)(2)
 // console.log(result)
 const curryingEx = currying(2)
-console.log(curryingEx)
-console.log(curryingEx(10))
-
 
 
 // 화살표 함수로 변경해보면 이해가 좀 더 쉽다.
 const arroutCurrying = a => b => a+b
-console.log(arroutCurrying(5)(8))
+
+
+// reduce를 사용하여 pipe 함수 구현하기. 그리고 코드를 더욱 좋게 리팩토링하기
+
+
+const todoList = [{
+   'done': true,
+   'text': '오늘 할일'
+},
+{
+   'done': false,
+	 'text': '내일 할일'
+},
+{
+   'done': true,
+	 'text': '모레 할일'
+}]
+
+
+
+const pipe = (...functions) => (value) => {
+    return functions.reduce((currentValue, currentFunc) => {
+      return currentFunc(currentValue);
+     }, value);
+  };
+
+function filterList(list) {
+    return list.filter((item) => item.done === true);
+}
+
+function printList(list) {
+  list.forEach((item) => {
+    // console.log(item);
+  });
+}
+
+pipe(filterList,printList)(todoList);
+
+
+//커링함수 만들어보기 연습
+
+function curry (func){
+  return function(a){
+ return function(b){
+    return func(a,b)
+  }
+  }
+}
+
+const curryTest  = curry(plusNumber)(2)(3)
+console.log(curryTest)
+
+function plusNumber (a,b){
+  return a + b
+}
