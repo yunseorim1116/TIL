@@ -16,105 +16,52 @@ const curryingEx = currying(2)
 const arroutCurrying = a => b => a+b
 
 
-// reduce를 사용하여 pipe 함수 구현하기. 그리고 코드를 더욱 좋게 리팩토링하기
 
 
-const todoList = [{
-   'done': true,
-   'text': '오늘 할일'
-},
-{
-   'done': false,
-	 'text': '내일 할일'
-},
-{
-   'done': true,
-	 'text': '모레 할일'
-}]
+// 커링함수 만들어보기 연습
+
+function curry (func){
+  return function(a){
+ return function(b){
+    return func(a,b)
+  }
+  }
+}
+
+const curryTest  = curry(plusNumber)(2)(3)
+// console.log(curryTest)
+
+function plusNumber (a,b) {
+  return a + b
+}
 
 
+//curryR 함수 만들기
+function curryR (func) {
+  return function(a,b) {
+    return arguments.length === 2 ? func(a,b) :
+      function(b){  return func(b,a) }
+  }
 
-// const pipe = (...functions) => (value) => {
-//     return functions.reduce((currentValue, currentFunc) => {
-//       return currentFunc(currentValue);
-//      }, value);
-//   };
-
-// function filterList(list) {
-//     return list.filter((item) => item.done === true);
-// }
-
-// function printList(list) {
-//   list.forEach((item) => {
-//     // console.log(item);
-//   });
-// }
-
-// pipe(filterList,printList)(todoList);
+}
+// console.log(curryR)
 
 
-// //커링함수 만들어보기 연습
+//커링과 실행컨텍스트, 클로저
 
-// function curry (func){
-//   return function(a){
-//  return function(b){
-//     return func(a,b)
-//   }
-//   }
-// }
+function add(x) {
+  return function(y) {
+    return function(z) {
+      return x + y + z;
+    }
+  }
+}
 
-// const curryTest  = curry(plusNumber)(2)(3)
-// // console.log(curryTest)
+const x = add(1)
 
-// function plusNumber (a,b) {
-//   return a + b
-// }
+// 결과적으로 **const x = add(1)** 함수 실행 이후에는 클로저 함수가 **x** 변수에 할당되어 있습니다.
 
+// 이 클로저는 외부 환경(외부 스코프)에서의 **add** 함수의 실행 컨텍스트와 관련된 변수들을 참조합니다.
 
-// //curryR 함수 만들기
-// function curryR (func) {
-//   return function(a,b) {
-//     return arguments.length === 2 ? func(a,b) :
-//       function(b){  return func(b,a) }
-//   }
-
-// }
-// // console.log(curryR)
-
-
-const pipe = (...functions) => (value) => {
-    return functions.reduce((currentValue, currentFunc) => currentFunc(currentValue), value);
-  };
-
-
-
-//   function filterList(condition) {
-//     return function(list){
-//        return list.filter((item) => item.done === condition)
-//       }
-// }
-
-
-const filterList = (condition) => (list) => list.filter((item) => item.done === condition)
-
-
-// function printList(list) {
-//   return function () {
-//     list.forEach((item) => {
-//       console.log(item);
-//     });
-//   };
-// }
-
-const printList = (list) => () => list.forEach((item) => console.log(item));
-
-
-
-
-const printDoneTrueList = pipe(
-  filterList(true),
-  printList
-)(todoList);
-
-
-printDoneTrueList()
+// - 이 경우에는 **x 매개변수의 값인 1이 외부 환경에서 유지**됩니다.
+// - **y**와 **z** 매개변수는 아직 전달되지 않았으므로 나중에 전달될 때까지 유지됩니다.
