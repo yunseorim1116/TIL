@@ -1,83 +1,96 @@
+const copyArray = (arr, seen) => {
+  return arr.map((item) => copyDeepObject(item, seen));
+};
+
+const copyRegExp = (regExp) => {
+  return new RegExp(regExp);
+};
+
+const copyDate = (date) => {
+  return new Date(date);
+};
+
+const copySet = (set, seen) => {
+  const copiedSet = new Set();
+  for (let item of set) {
+    copiedSet.add(copyDeepObject(item, seen));
+  }
+  return copiedSet;
+};
+
+const copyMap = (map, seen) => {
+  const copiedMap = new Map();
+  for (let [key, value] of map) {
+    copiedMap.set(copyDeepObject(key, seen), copyDeepObject(value, seen));
+  }
+  return copiedMap;
+};
+
+
+
 const copyDeepObject = (target, seen = new Set()) => {
-  let resultObj = {};
+  if (Array.isArray(target)) {
+    return copyArray(target, seen);
+  }
+
+  if (target instanceof RegExp) {
+    return copyRegExp(target);
+  }
+
+  if (target instanceof Date) {
+    return copyDate(target);
+  }
+
+  if (target instanceof Set) {
+    return copySet(target, seen);
+  }
+
+  if (target instanceof Map) {
+    return copyMap(target, seen);
+  }
+
   if (typeof target === 'object' && target !== null) {
 
-    // array, new Date , 정규식 , new Set (), new Map () 에 대한 예외처리
-     if (seen.has(target)) {
-        console.log(target)
-      return
+    if (seen.has(target)) {
+      return target;
     }
 
     seen.add(target);
 
-    if(Array.isArray(target)){ //배열 예외처리
-        return resultObj = target.map((item) => copyDeepObject(item));
-    }
+    const resultObj = {};
 
-    if (target instanceof RegExp) { //정규표현식 예외처리
-      resultObj = new RegExp(target);
-      return resultObj;
-    }
-
-    if(target instanceof Date){ //데이트 객체 예외처리
-       resultObj = new Date(target);
-
-
-      return resultObj;
+    for (let key in target) {
+      if (target.hasOwnProperty(key)) {
+        resultObj[key] = copyDeepObject(target[key], seen);
       }
-
-    if(target instanceof Set){ //new Set 객체 예외처리
-       const copiedSet = new Set();
-       for (let item of target) {
-       copiedSet.add(copyDeepObject(item, memory));
-         }
-      return copiedSet;
-      }
-
-    if(target instanceof Map){ //new Map 객체 예외처리
-       const copiedMap = new Map();
-       for (let [key, value] of target) {
-      copiedMap.set(copyDeepObject(key), copyDeepObject(value));
- }
-return copiedMap;
-
     }
+    return resultObj;
+  }
 
-    //일반 object 형태
-        for (let x in target) {
-      resultObj[x] = copyDeepObject(target[x],seen);
-    }
-      } else { //원시값
+  if (typeof target === 'symbol') {
+    const { description } = target;
+    return Symbol.for(description);
+  }
 
-   if (typeof target === 'symbol') {
-      const newSymbolKey = target.description
-      resultObj=  Symbol(newSymbolKey);
-       return resultObj
-    }
+  //객체도, 예외 객체도, Symbol타입도 아닐 때
+  return target;
+};
 
-  resultObj = target;
-}
+const sym =  Symbol("g")
+const objA = { strA:'A', a :'a', g: sym};
+const objB = { strB:'B' , b:'b'};
 
-return resultObj;
-
-}
-
-const checkObjectType = ()=>{
-
-}
-
-const a1 = Symbol()
-const a2 = Symbol('a')
-const objA = { a : [1,2,3], x : 1 };
-const objB = { str : 'str'};
+console.log(objA)
 
 objA.ref = objB;
 objB.ref = objA;
 
-
+console.log(objA)
 const copiedObj = copyDeepObject(objA);
-console.log(copiedObj)
+
+console.log('---')
+console.log(copiedObj.g === objA.g)
 
 // const x = { a: '1', g: Symbol("g") , b:[1,2,3] }
 // const a = copyDeepObject(x)
-// console.log(a.g === x.g)
+// console.log(a)
