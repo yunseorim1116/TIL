@@ -36,7 +36,10 @@ function getAgeRange(age) {
 const x = investors.filter(({investment})=> investment > 5000).reduce((arr,curr)=>{
 const key = getAgeRange(curr.age)
     if(!arr[key]){
-        arr[key]= []
+        arr[key]= [{
+          ...curr,
+          profit: curr.investment * curr.returnRate,
+        }]
         return arr
     }else{
     arr[key].push({
