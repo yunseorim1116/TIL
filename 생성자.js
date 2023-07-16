@@ -49,6 +49,6 @@ console.log(person1.age); // 외부에서 접근 가능
 person1.sayHello(); // 외부에서 접근 가능
 
 console.log(person1.privateVariable); // undefined - 외부에서 접근 불가능
-person1.privateMethod(); // TypeError: person1.privateMethod is not a function - 외부에서 접근 불가능
+// person1.privateMethod(); // TypeError: person1.privateMethod is not a function - 외부에서 접근 불가능
 
 person1.publicMethod(); // 내부에서 접근 가능

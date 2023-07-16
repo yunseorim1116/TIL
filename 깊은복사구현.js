@@ -29,7 +29,7 @@ const copyMap = (map, seen) => {
 
 const copySymbol = (symbol) => {
  const { description } = symbol;
-    return Symbol.for(description);
+return Symbol.for(description)
 }
 
 const copyObject = (object, seen)=>{
@@ -38,7 +38,7 @@ const copyObject = (object, seen)=>{
       if (!object.hasOwnProperty(key))  return
       resultObj[key] = copyDeepObject(object[key], seen);
     }
-     return resultObj;
+   return resultObj;
 }
 
 const copyDeepObject = (target, seen = new Set()) => {
@@ -66,15 +66,18 @@ const copyDeepObject = (target, seen = new Set()) => {
   }
 
     if (seen.has(target)) {
-      console.log('seen')
-      console.log(seen)
-      console.log('target')
-      console.log(target)
+      // console.log('seen')
+      // console.log(seen)
+      // console.log('target')
+      // console.log(target)
       return target;
     }
-
+  //  console.log('target!')
+  //  console.log(target)
     seen.add(target);
-    copyObject(target, seen)
+
+    //예외처리 완료하고 object 타입일 때
+   return copyObject(target, seen)
 
   } else { //원시타입
 
@@ -90,20 +93,16 @@ const copyDeepObject = (target, seen = new Set()) => {
 };
 
 
-const objA = { strA:'A', a :'a', g: Symbol("g")};
+const objA = {  x: [1,2,3],strA:'A', a :'a', x : Symbol('x'), g: Symbol.for('a') };
 const objB = { strB:'B' , b:'b'};
-
-console.log(objA)
 
 objA.ref = objB;
 objB.ref = objA;
 
-console.log(objA)
+// console.log(objA)
 const copiedObj = copyDeepObject(objA);
-
 console.log('---')
+const obj = {x : Symbol('x')}
 
-
-// const x = { a: '1', g: Symbol("g") , b:[1,2,3] }
-// const a = copyDeepObject(x)
-// console.log(a)
+console.log(copiedObj.g === objA.g)
+// console.log(copiedObj.x === objA.x)

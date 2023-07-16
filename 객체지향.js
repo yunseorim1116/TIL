@@ -32,7 +32,7 @@ const  winter = new SmIdol('winter',25,'cute','1000')
 
 const data = [
   { name : 'seorim', company:'none', age : 18, salery : 10000000, concept:'sexy'  },
-    { name : 'winter', company:'SM', age : 15, salery : 100, concept:'cute'  },
+  { name : 'winter', company:'SM', age : 15, salery : 100, concept:'cute'  },
 ]
 
 

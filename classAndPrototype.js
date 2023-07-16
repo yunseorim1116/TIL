@@ -28,8 +28,33 @@ Person2.prototype.say = function() {
   console.log('my Name is' + this.name)
 };
 
+// 같은 객체 생성자 함수를 사용하는 경우, 특정 함수 또는 값을 재사용 할 수 있는데 바로 프로토타입이다.
+
 const seorim2 = new Person2('seorim')
 
 console.log(seorim2)
 seorim2.say()
+
+function Animal(type, name, sound) {
+  this.type = type;
+  this.name = name;
+  this.sound = sound;
+}
+
+function Dog(name,sound) {
+  Animal.call(this, '개', name,sound);
+}//상속 구현
+
+Dog.prototype = Animal.prototype;
+// Animal prototype 을 주입하게 되면
+
+Dog.prototype.say = function() {
+  console.log(this.sound);
+}; //Dog.prototype에 주입한 메소드를
+
+const x = new Animal('개','별찌','야오옹ㅇ')
+x.say() //Animal로 만든 인스턴스에서도 사용 가능하게 되는 문제가 발생 할 수도 있다.
+
+const dog = new Dog('멍멍이', '멍멍');
+dog.say()
 
