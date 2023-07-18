@@ -1,4 +1,3 @@
-
 const copyArray = (arr, seen) => {
   return arr.map((item) => copyDeepObject(item, seen));
 };
@@ -27,9 +26,10 @@ const copyMap = (map, seen) => {
   return copiedMap;
 };
 
+
 const copySymbol = (symbol) => {
  const { description } = symbol;
-return Symbol.for(description)
+ return Symbol.for(description);
 }
 
 const copyObject = (object, seen)=>{
@@ -38,10 +38,20 @@ const copyObject = (object, seen)=>{
       if (!object.hasOwnProperty(key))  return
       resultObj[key] = copyDeepObject(object[key], seen);
     }
-   return resultObj;
+     return resultObj;
 }
 
+// const copyFunction =(fn)=> {
+//    const fnStr = fn.toString();
+//    const fnClone = new Function('return ' + fnStr);
+//     return fnClone();
+// }
+
 const copyDeepObject = (target, seen = new Set()) => {
+
+    if(target instanceof Function){
+      return target
+    }
 
   if (typeof target === 'object' && target !== null) { //참조타입
 
@@ -66,18 +76,13 @@ const copyDeepObject = (target, seen = new Set()) => {
   }
 
     if (seen.has(target)) {
-      // console.log('seen')
-      // console.log(seen)
-      // console.log('target')
-      // console.log(target)
       return target;
     }
-  //  console.log('target!')
-  //  console.log(target)
+
     seen.add(target);
 
     //예외처리 완료하고 object 타입일 때
-   return copyObject(target, seen)
+  return copyObject(target, seen)
 
   } else { //원시타입
 
@@ -93,16 +98,14 @@ const copyDeepObject = (target, seen = new Set()) => {
 };
 
 
-const objA = {  x: [1,2,3],strA:'A', a :'a', x : Symbol('x'), g: Symbol.for('a') };
-const objB = { strB:'B' , b:'b'};
+const objA = { strA:'A', a :'a', c : ()=>{console.log('12')
+const a = 'a'
+console.log(a)
+} };
+// const objB = { strB:'B' , b:'b'};
 
-objA.ref = objB;
-objB.ref = objA;
+// objA.ref = objB;
+// objB.ref = objA;
 
-// console.log(objA)
 const copiedObj = copyDeepObject(objA);
-console.log('---')
-const obj = {x : Symbol('x')}
-
-console.log(copiedObj.g === objA.g)
-// console.log(copiedObj.x === objA.x)
+console.log(copiedObj.c ===objA.c )
