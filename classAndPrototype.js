@@ -42,7 +42,7 @@ function Animal(type, name, sound) {
 }
 
 function Dog(name,sound) {
-  Animal.call(this, '개', name,sound);
+  Animal.call(this, '개', name, sound);
 }//상속 구현
 
 Dog.prototype = Animal.prototype;
