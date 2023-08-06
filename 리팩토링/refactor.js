@@ -21,11 +21,11 @@ class Province {
   }
 
   get profit() {
-    return this._demandValue - this.demandCost;
+    return this._demandValue - this.demandCost; //총 매출 - 수요비용
   }
 
   get demandValue() {
-    //수요 가치
+    //수요 가치 // 총 매출
     return this.staisfiedDemand * this.price; // 충족된 수요 * price
   }
 
@@ -41,6 +41,9 @@ class Province {
     this.producers
       .sort((a, b) => a.cost - b.cost)
       .forEach((p) => {
+        if (remainingDemand <= 0) {
+          return; // 남은 수요가 없으면 더 이상 계산하지 않고 종료
+        }
         const contribution = Math.min(remainingDemand, p.production); // 작은 숫자 구하기
         remainingDemand -= contribution; // 구한 숫자 빼고
         result += contribution * p.cost; // result에 작은숫자, 현재 값 곱한 수 대입
