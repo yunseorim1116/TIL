@@ -1,24 +1,36 @@
-class Animal {
-  constructor(type, name, sound) {
-    this.type = type;
-    this.name = name;
-    this.sound = sound;
+class Score {
+  constructor(math, english, korean) {
+    this.math = math;
+    this.english = english;
+    this.korean = korean;
   }
-  say() {
-    console.log(this.sound);
+
+  sum() {
+    return this.math + this.english + this.korean;
   }
-}
 
-const dog = new Animal('개', '멍멍이', '멍멍');
-const cat = new Animal('고양이', '야옹이', '야옹');
-
-class Dog extends Animal {
-  constructor(name) {
-    super('개', name);
+  avg() {
+    const sum = this.sum();
+    console.log("평균 점수 (3과목) : " + sum / 3);
   }
 }
 
-const x = new Dog('afsd','a뀽')
-console.dir(x)
-dog.say();
-cat.say();
+//자식 클래스
+class Student extends Score {
+  a = 1;
+  constructor(math, english, korean, science) {
+    super(math, english, korean, Student.a);
+    this.science = science;
+  }
+
+  avg() {
+    //super.sum()을 통해 부모 클래스의
+    //메소드 접근
+    const sum = super.sum() + this.science;
+    console.log("평균 점수 (4과목): " + sum / 4);
+  }
+}
+
+const stu = new Student(90, 90, 100, 100);
+console.log(stu);
+stu.avg();
