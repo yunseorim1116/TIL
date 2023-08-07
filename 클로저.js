@@ -59,3 +59,25 @@ const changeouter = result[1];
 closure(); // ‘outer’
 changeouter();
 closure(); // ‘modified outer’;
+
+
+
+
+// 1. window 메소드 (setTimeout, setInterval) 에 전달할 내부 함수가 지역 변수를 참조하고 있는것
+// 2. 별도의 외부 객체인 dom 메소드 addEventLister에 등록할 함수 내부에서 지역 변수를 참조하고 있는것
+
+// 두 상황 모두 '지역변수를 참조하는' 내부 함수(전달 될 함수) 를 외부(setTimeout, addEventLister) 에 전달했기 때문에 클로저이다.
+
+//2번 예시
+(function() {
+  var count = 0;
+  var button = document.createElement('button');
+  button.innerText = 'click';
+
+  button.addEventListener('click', function() {
+    console.log(count++);
+    console.log('click');
+  });
+
+  document.body.appendChild(button);
+})();
