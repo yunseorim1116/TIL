@@ -62,4 +62,3 @@ stu.avg();
 // }
 
 // const a = new MyMath();
-// console.log(a);
