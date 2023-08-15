@@ -1,21 +1,21 @@
-// const setFunction = () => {
-//   console.time("map test"); // 측정 시작
-//   const map = new Map();
-//   for (let index = 0; index < 100000; index++) {
-//     map.set(index, index);
-//   }
+const setFunction = () => {
+  console.time("map test"); // 측정 시작
+  const map = new Map();
+  for (let index = 0; index < 100000; index++) {
+    map.set(index, index);
+  }
 
-//   console.timeEnd("map test"); // 측정 종료
+  console.timeEnd("map test"); // 측정 종료
 
-//   console.time("object test"); // 측정 시작
-//   const object = {};
+  console.time("object test"); // 측정 시작
+  const object = {};
 
-//   for (let index = 0; index < 100000; index++) {
-//     object[index] = index;
-//   }
+  for (let index = 0; index < 100000; index++) {
+    object[index] = index;
+  }
 
-//   console.timeEnd("object test"); // 측정 종료
-// };
+  console.timeEnd("object test"); // 측정 종료
+};
 
 // setFunction();
 
@@ -48,4 +48,34 @@ const getFunction = () => {
   console.timeEnd("Map test"); // 측정 종료
 };
 
-getFunction();
+// getFunction();
+const deleteFunction = () => {
+  const dataCount = 1000000;
+  const map = new Map();
+  const object = {};
+
+  // 데이터 채우기
+  for (let index = 0; index < dataCount; index++) {
+    const key = `key${index}`;
+    map.set(key, index);
+    object[key] = index;
+  }
+
+  // Object delete 성능 측정
+  console.time("object delete"); // 측정 시작
+  for (let index = 0; index < dataCount; index++) {
+    const key = `key${index}`;
+    delete object[key];
+  }
+  console.timeEnd("object delete"); // 측정 종료
+
+  // Map delete 성능 측정
+  console.time("map delete"); // 측정 시작
+  for (let index = 0; index < dataCount; index++) {
+    const key = `key${index}`;
+    map.delete(key);
+  }
+  console.timeEnd("map delete"); // 측정 종료
+};
+
+deleteFunction();
