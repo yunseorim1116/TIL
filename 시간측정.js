@@ -1,36 +1,51 @@
-console.time(); // 측정 시작
+// const setFunction = () => {
+//   console.time("map test"); // 측정 시작
+//   const map = new Map();
+//   for (let index = 0; index < 100000; index++) {
+//     map.set(index, index);
+//   }
 
-const map = new Map();
+//   console.timeEnd("map test"); // 측정 종료
 
-for (let index = 0; index < 100; index++) {
-  map.set(`키${index}`, index);
-}
+//   console.time("object test"); // 측정 시작
+//   const object = {};
 
-console.timeEnd(); // 측정 종료
+//   for (let index = 0; index < 100000; index++) {
+//     object[index] = index;
+//   }
 
-console.time(); // 측정 시작
-const object = {};
+//   console.timeEnd("object test"); // 측정 종료
+// };
 
-for (let index = 0; index < 100; index++) {
-  object[index] = index;
-}
+// setFunction();
 
-console.timeEnd(); // 측정 종료
+const getFunction = () => {
+  const dataCount = 1000000;
+  const map = new Map();
+  const object = {};
 
-//
+  // 데이터 채우기
+  for (let index = 0; index < dataCount; index++) {
+    const key = `key${index}`;
+    map.set(key, index);
+    object[key] = index;
+  }
 
-// const map = new Map();
-// const object = {};
+  // Object get 성능 측정
+  console.time("object test"); // 측정 시작
+  for (let index = 0; index < dataCount; index++) {
+    const key = `key${index}`;
+    object[key];
+  }
+  console.timeEnd("object test"); // 측정 종료
 
-// // 데이터 추가
-// map.set("key1", "value1");
-// object["key1"] = "value1";
+  // Map get 성능 측정
+  console.time("Map test"); // 측정 시작
+  for (let index = 0; index < dataCount; index++) {
+    const key = `key${index}`;
+    map.get(key);
+  }
+  console.timeEnd("Map test"); // 측정 종료
+};
 
-// // 데이터 검색
-// console.time("Map");
-// console.log(map.get("key1"));
-// console.timeEnd("Map");
-
-// console.time("Object");
-// console.log(object["key1"]);
-// console.timeEnd("Object");
+getFunction();
