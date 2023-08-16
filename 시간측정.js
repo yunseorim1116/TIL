@@ -17,7 +17,7 @@ const setFunction = () => {
   console.timeEnd("object test"); // 측정 종료
 };
 
-// setFunction();
+setFunction();
 
 const getFunction = () => {
   const dataCount = 1000000;
@@ -78,4 +78,26 @@ const deleteFunction = () => {
   console.timeEnd("map delete"); // 측정 종료
 };
 
-deleteFunction();
+// deleteFunction();
+
+const addFunction = () => {
+  const dataCount = 1000000;
+  const map = new Map();
+  const object = {};
+
+  console.time("Map add");
+  for (let index = dataCount; index < dataCount * 2; index++) {
+    const key = `key${index}`;
+    map.set(key, index);
+  }
+  console.timeEnd("Map add");
+
+  console.time("Object add");
+  for (let index = dataCount; index < dataCount * 2; index++) {
+    const key = `key${index}`;
+    object[key] = index;
+  }
+  console.timeEnd("Object add");
+};
+
+// addFunction();
