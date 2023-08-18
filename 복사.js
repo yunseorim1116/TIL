@@ -1,5 +1,5 @@
 // const _ = require("lodash");
-// var clone = require("clone");
+var clone = require("clone");
 
 // const testArr = [];
 
@@ -22,9 +22,14 @@
 
 // // console.log(clonedObj.symbolTest === symbolType);
 
+const testArr = { b: "", a: "test", [Symbol("a")]: Symbol("b") };
+const _ = require("lodash");
+console.log(testArr === _.cloneDeep(testArr));
+console.log(testArr === clone(testArr));
+
 const { performance } = require("perf_hooks");
 
-const testArr = Array.from({ length: 10000 }, (_, index) => ({ index }));
+// const testArr = Array.from({ length: 10000 }, (_, index) => ({ index }));
 
 const measureTime = (action) => {
   const startTime = performance.now();
@@ -33,17 +38,22 @@ const measureTime = (action) => {
   return endTime - startTime;
 };
 
-const jsonParseStringifyTime = measureTime(() => {
-  JSON.parse(JSON.stringify(testArr));
+// const jsonParseStringifyTime = measureTime(() => {
+//   JSON.parse(JSON.stringify(testArr));
+// });
+
+// const structuredCloneTime = measureTime(() => {
+//   structuredClone(testArr);
+// });
+const clonDeepTime = measureTime(() => {
+  _.cloneDeep(testArr);
 });
 
-const structuredCloneTime = measureTime(() => {
-  structuredClone(testArr);
-});
+// console.log(
+//   "JSON.parse(JSON.stringify):",
+//   jsonParseStringifyTime.toFixed(3),
+//   "ms"
+// );
+// console.log("structuredClone:", structuredCloneTime.toFixed(3), "ms");
 
-console.log(
-  "JSON.parse(JSON.stringify):",
-  jsonParseStringifyTime.toFixed(3),
-  "ms"
-);
-console.log("structuredClone:", structuredCloneTime.toFixed(3), "ms");
+console.log("cloneDeep:", clonDeepTime.toFixed(3), "ms");
