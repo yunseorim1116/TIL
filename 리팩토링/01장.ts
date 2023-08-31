@@ -28,6 +28,7 @@ function isTrue(bool: boolean) {
 interface Bird {
   hasBeak(): boolean;
   canFly(): boolean;
+  canSwim(): boolean;
 }
 
 class ComonBird implements Bird {
@@ -35,6 +36,9 @@ class ComonBird implements Bird {
     return true;
   }
   canFly() {
+    return true;
+  }
+  canSwim() {
     return true;
   }
 }
@@ -50,6 +54,7 @@ class Penguin extends ComonBird {
 interface Bird2 {
   hasBeak(): boolean;
   canFly(): boolean;
+  canSwim(): boolean;
 }
 
 class ComonBird2 implements Bird2 {
@@ -57,6 +62,9 @@ class ComonBird2 implements Bird2 {
     return true;
   }
   canFly() {
+    return true;
+  }
+  canSwim() {
     return true;
   }
 }
