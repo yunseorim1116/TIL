@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .specialBox {
+        width: 300px;
+        height: 300px;
+        background-color: orange;
+        opacity: 1;
+        will-change: opacity;
+      }
+
+      .specialBox--hidden {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="specialBox"></div>
+    <button class="toggle">On/Off 버튼</button>
+    <script>
+      (function () {
+        const toggleBtn = document.querySelector(".toggle");
+
+        toggleBtn.addEventListener("click", function () {
+          const specialBox = document.querySelector(".specialBox");
+          specialBox.classList.toggle("specialBox--hidden");
+        });
+      })();
+    </script>
+  </body>
+</html>
