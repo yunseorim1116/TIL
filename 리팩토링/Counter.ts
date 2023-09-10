@@ -37,3 +37,21 @@ function main() {
     incrementCounter(counter);
   }
 }
+
+interface Tile {
+  moveHoriontal(map: Map, player: Player, dx: number): void;
+  moveVertical(map: Map, player: Player, dy: number): void;
+  update(map: Map, x: number, y: number): void;
+} //map 을 인자로 추가,,
+
+class Map {
+  private map: Tile[][];
+  getMap() {
+    return this.map;
+  }
+  setMap(map: Tile[][]) {
+    this.map = map;
+  }
+}
+
+function remove(map: Map, palyer: Player, dx: number) {}
